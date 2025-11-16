@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#canvas-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scaleY(-1);
+    width: 1920px;
+    height: 1080px;
+}
+
+.menu {
+    position: absolute;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+#control-panel {
+    right: 10px;
+    top: 10px;
+}
+
+#navigation-panel {
+    left: 10px;
+    bottom: 10px;
+    cursor: move;
+    user-select: none;
+}
+
+.control-group {
+    margin-bottom: 10px;
+}
+
