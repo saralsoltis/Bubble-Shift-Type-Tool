@@ -90,34 +90,6 @@ showControlsCheckbox.addEventListener('change', () => {
   controlPanel.style.display = showControlsCheckbox.checked ? 'block' : 'none';
 });
 
-// Make navigation panel draggable
-let isDragging = false;
-let dragOffsetX = 0;
-let dragOffsetY = 0;
-
-navigationPanel.addEventListener('mousedown', (e) => {
-  isDragging = true;
-  dragOffsetX = e.clientX - navigationPanel.offsetLeft;
-  dragOffsetY = e.clientY - navigationPanel.offsetTop;
-  navigationPanel.style.cursor = 'move';
-});
-
-document.addEventListener('mousemove', (e) => {
-  if (isDragging) {
-    navigationPanel.style.left = (e.clientX - dragOffsetX) + 'px';
-    navigationPanel.style.top = (e.clientY - dragOffsetY) + 'px';
-    navigationPanel.style.bottom = 'auto';
-    navigationPanel.style.right = 'auto';
-  }
-});
-
-document.addEventListener('mouseup', () => {
-  if (isDragging) {
-    isDragging = false;
-    navigationPanel.style.cursor = 'move';
-  }
-});
-
 // Handle font upload
 fontUpload.addEventListener('change', (event) => {
   const file = event.target.files[0];
