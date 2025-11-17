@@ -1,6 +1,6 @@
 # Bubble Shift Type Tool
 
-An interactive web-based typographic tool that creates liquid bubble distortion effects on text using WebGL shaders and p5.js. This tool allows users to create dynamic, underwater-like text effects with customizable animated bubbles that displace and refract the typography.
+An interactive web-based typographic tool that creates liquid bubble distortion effects on text using WebGL shaders and p5.js. This tool allows you to create dynamic, water-like text effects with customizable animated bubbles that displace and refract the typography.
 
 ## Features
 
@@ -26,8 +26,8 @@ An interactive web-based typographic tool that creates liquid bubble distortion 
 - **Responsive Design**: Auto-resizing canvas container
 
 ### Interface
-- **Draggable Controls**: Moveable navigation panel
-- **Collapsible UI**: Show/hide control panels for clean export view
+- **Draggable Controls**: Moveable navigation Controls
+- **Collapsible UI**: Show/hide control Controlss for clean export view
 - **Real-time Preview**: All changes update immediately
 
 ## Technical Implementation
@@ -61,7 +61,7 @@ An interactive web-based typographic tool that creates liquid bubble distortion 
    
    # Using Live Server (VS Code extension)
    ```
-3. **Open in Browser**: Navigate to `http://localhost:8000`
+3. **Open in Browser**: Navigate to local host port
 
 ## File Structure
 
@@ -71,8 +71,6 @@ An interactive web-based typographic tool that creates liquid bubble distortion 
 ├── style.css               # Interface styling
 ├── fragmentShader.frag     # WebGL fragment shader (bubble effects)
 ├── vertexShader.vert       # WebGL vertex shader (basic positioning)
-├── sphereFragmentShader.frag # Alternative sphere shader (unused)
-├── sphereVertexShader.vert   # Alternative sphere shader (unused)
 ├── p5.min.js              # p5.js library
 ├── p5.capture.js          # Screen capture extension
 └── jsconfig.json          # JavaScript configuration
@@ -80,7 +78,7 @@ An interactive web-based typographic tool that creates liquid bubble distortion 
 
 ## Controls Reference
 
-### Typography Panel
+### Typography Controls
 - **Background/Text Color**: Color pickers for styling
 - **Text Input**: Multiline text area for content
 - **Font Picker**: Dropdown with system and uploaded fonts
@@ -88,15 +86,15 @@ An interactive web-based typographic tool that creates liquid bubble distortion 
 - **Font Size**: 100-300px range
 - **Line Height**: 0.75-2.0 spacing multiplier
 
-### Bubble Effects Panel
-- **Displacement Factor**: -0.3 to 0.2 (negative values create inward distortion)
+### Bubble Effects Controls
+- **Displacement Factor**: -0.3 to 0.2 (negative values create flipped distortion)
 - **Number of Bubbles**: 1-12 animated spheres
 - **Bubble Size Range**: Min (0.1-1.0) and Max (1.0-2.0) size controls
 - **Bubble Speed**: 0.5-3.0 animation speed multiplier
 - **Bubble Contrast**: 0-2.0 visibility enhancement
 - **Highlight Size/Strength**: Specular reflection controls (0-100 size, 0-10 strength)
 
-### Navigation Panel (Draggable)
+### Navigation Controls
 - **Zoom**: 25%-200% viewport scaling
 - **Canvas Dimensions**: Preset resolution options
 - **Flip Orientation**: Swap width/height
@@ -115,10 +113,10 @@ An interactive web-based typographic tool that creates liquid bubble distortion 
 - **Chrome/Edge**: Full support
 - **Firefox**: Full support
 - **Safari**: WebGL support required
-- **Mobile**: Limited performance on complex scenes
 
 ## Performance Notes
 
+- Recommended browser: Google Chrome
 - Higher bubble counts and larger canvases impact frame rate
 - Recommended: 8 bubbles or fewer for smooth 60fps performance
 - 4K resolution may require powerful graphics hardware

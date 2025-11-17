@@ -13,6 +13,7 @@ uniform float maxBubbleSize;
 uniform float bubbleHighlightSize;
 uniform float bubbleHighlightStrength;
 uniform float bubbleContrast;
+uniform float bubbleOpacity;
 
 // ========== SIGNED DISTANCE FUNCTIONS ==========
 
@@ -49,16 +50,14 @@ float map(vec3 p) {
     return d;
 }
 
-// Calculate surface normal using tetrahedron technique
+// Calculate surface normal using optimized 3-sample method
 vec3 calcNormal(in vec3 p) {
     const float h = 0.002;
-    const vec2 k = vec2(1, -1);
-    return normalize(
-        k.xyy * map(p + k.xyy * h) + 
-        k.yyx * map(p + k.yyx * h) + 
-        k.yxy * map(p + k.yxy * h) + 
-        k.xxx * map(p + k.xxx * h)
-    );
+    return normalize(vec3(
+        map(p + vec3(h, 0, 0)) - map(p - vec3(h, 0, 0)),
+        map(p + vec3(0, h, 0)) - map(p - vec3(0, h, 0)),
+        map(p + vec3(0, 0, h)) - map(p - vec3(0, 0, h))
+    ));
 }
 
 // ========== MAIN SHADER ==========
@@ -76,7 +75,7 @@ void main() {
   vec3 p;
   
   // Raymarch loop
-  for(int i = 0; i < 24; i++) {
+  for(int i = 0; i < 20; i++) {
       p = rayOri + rayDir * depth;
       float dist = map(p);
       depth += dist;
@@ -107,13 +106,16 @@ void main() {
   
   float diffuse = max(0.0, dot(n, lightDir));
   float specular = pow(max(0.0, dot(n, normalize(lightDir + viewDir))), bubbleHighlightSize);
-  float edgeFactor = pow(1.0 - max(0.0, dot(n, viewDir)), 5.0);
+  float edgeFactor = pow(1.0 - max(0.0, dot(n, viewDir)), 1.25);
   
-  // Combine lighting
-  vec3 sphereCol = vec3(diffuse) + vec3(specular * bubbleHighlightStrength) * (1.0 - edgeFactor);
-  sphereCol = mix(sphereCol, vec3(edgeFactor * 0.1), edgeFactor);
+  // Material and lighting colors
+  vec3 materialColor = vec3(1.0, 1.0, 1.0);
+  vec3 lightingColor = vec3(1.0, 1.0, 1.0);
+  
+  vec3 sphereCol = materialColor * lightingColor * diffuse + lightingColor * vec3(specular * bubbleHighlightStrength) * (1.0 - edgeFactor);
+  sphereCol = mix(sphereCol, materialColor * lightingColor * vec3(edgeFactor * 0.1), edgeFactor);
   sphereCol *= exp(-depth * 0.01) * bubbleContrast;
   
   // Final output
-  gl_FragColor = mix(finalImg, vec4(sphereCol, 1.0), sphereMask * 0.15);
+  gl_FragColor = mix(finalImg, vec4(sphereCol, 1.0), sphereMask * bubbleOpacity);
 }

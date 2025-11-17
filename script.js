@@ -3,6 +3,61 @@ let myShader;
 let textGraphics;
 let customFont = null;
 
+// Preset configurations
+const presets = {
+  bubble: {
+    backgroundColor: "#a6d1f2",
+    textColor: "#0797df",
+    textInput: "BE\nLIKE\nTHE\nWATER",
+    fontSize: 180,
+    lineHeight: 0.9,
+    displacement: 0.06,
+    numBubbles: 8,
+    minBubbleSize: 0.25,
+    maxBubbleSize: 1.5,
+    bubbleSpeed: 2.0,
+    bubbleOpacity: 0.1,
+    bubbleContrast: 1,
+    bubbleHighlightSize: 20,
+    bubbleHighlightStrength: 7,
+    fontFamily: "Trebuchet MS"
+  },
+  vampiric: {
+    backgroundColor: "#db0000",
+    textColor: "#000000",
+    textInput: "BLOOD\nSWEAT\nAND\nTEARS",
+    fontSize: 115,
+    lineHeight: 1.4,
+    displacement: -0.2,
+    numBubbles: 10,
+    minBubbleSize: 0.1,
+    maxBubbleSize: 1.0,
+    bubbleSpeed: 1.3,
+    bubbleOpacity: 0.15,
+    bubbleContrast: 0.5,
+    bubbleHighlightSize: 100,
+    bubbleHighlightStrength: 0,
+    fontFamily: "Georgia"
+  },
+  groovy: {
+    backgroundColor: "#c21aff",
+    textColor: "#ff822e",
+    textInput: "Go\nWith\nThe\nFlow",
+    fontSize: 245,
+    lineHeight: 1.0,
+    displacement: 0.2,
+    numBubbles: 6,
+    minBubbleSize: 0.1,
+    maxBubbleSize: 2.0,
+    bubbleSpeed: 3.0,
+    bubbleOpacity: 0.12,
+    bubbleContrast: 1.0,
+    bubbleHighlightSize: 98,
+    bubbleHighlightStrength: 2.5,
+    fontFamily: "Brush Script MT"
+  }
+};
+
 // DOM elements - Controls
 let dispSlider = document.getElementById('disp-slider');
 let bgColorPicker = document.getElementById('background-color');
@@ -21,11 +76,15 @@ let customFontOption = document.getElementById('custom-font-option');
 let bubbleHighlightSizeSlider = document.getElementById('bubble-highlight-size');
 let bubbleHighlightStrengthSlider = document.getElementById('bubble-highlight-strength');
 let zoomLevelSlider = document.getElementById('zoom-level');
+let bubbleOpacitySlider = document.getElementById('bubble-opacity');
 let bubbleContrastSlider = document.getElementById('bubble-contrast');
 let canvasDimensionsPicker = document.getElementById('canvas-dimensions');
 let flipDimensionsCheckbox = document.getElementById('flip-dimensions')
 let showControlsCheckbox = document.getElementById('show-controls');
 let navigationPanel = document.getElementById('navigation-panel');
+let exportJpgButton = document.getElementById('export-jpg');
+let exportPngButton = document.getElementById('export-png');
+let presetsSelect = document.getElementById('presets');
 
 // DOM elements - Value displays
 let fontSizeValue = document.getElementById('font-size-value');
@@ -37,6 +96,7 @@ let minBubbleSizeValue = document.getElementById('min-bubble-size-value');
 let maxBubbleSizeValue = document.getElementById('max-bubble-size-value');
 let bubbleHighlightSizeValue = document.getElementById('bubble-highlight-size-value');
 let bubbleHighlightStrengthValue = document.getElementById('bubble-highlight-strength-value');
+let bubbleOpacityValue = document.getElementById('bubble-opacity-value');
 let bubbleContrastValue = document.getElementById('bubble-contrast-value');
 let zoomLevelValue = document.getElementById('zoom-level-value');
 
@@ -51,6 +111,7 @@ maxBubbleSizeSlider.addEventListener('input', () => maxBubbleSizeValue.textConte
 bubbleHighlightSizeSlider.addEventListener('input', () => bubbleHighlightSizeValue.textContent = bubbleHighlightSizeSlider.value);
 bubbleHighlightStrengthSlider.addEventListener('input', () => bubbleHighlightStrengthValue.textContent = bubbleHighlightStrengthSlider.value);
 bubbleContrastSlider.addEventListener('input', () => bubbleContrastValue.textContent = bubbleContrastSlider.value);
+bubbleOpacitySlider.addEventListener('input', () => bubbleOpacityValue.textContent = Math.floor(bubbleOpacitySlider.value * 1000) + '%');
 
 zoomLevelSlider.addEventListener('input', () => {
   zoomLevelValue.textContent = Math.floor(zoomLevelSlider.value * 100) + '%';
@@ -60,7 +121,7 @@ zoomLevelSlider.addEventListener('input', () => {
 // Update canvas transform with zoom
 function updateCanvasTransform() {
   const zoomLevel = Number(zoomLevelSlider.value);
-  container.style.transform = `translate(-50%, -50%) scaleY(-1) scale(${zoomLevel})`;
+  container.style.transform = `translate(-50%, -50%) scale(${zoomLevel})`;
 }
 
 // Resize canvas container based on selected dimensions
@@ -89,6 +150,70 @@ showControlsCheckbox.addEventListener('change', () => {
   const controlPanel = document.getElementById('control-panel');
   controlPanel.style.display = showControlsCheckbox.checked ? 'block' : 'none';
 });
+
+// Export button event listeners
+exportJpgButton.addEventListener('click', () => {
+  exportImage('jpg');
+});
+
+exportPngButton.addEventListener('click', () => {
+  exportImage('png');
+});
+
+// Preset selection event listener
+presetsSelect.addEventListener('change', () => {
+  loadPreset(presetsSelect.value);
+});
+
+// Export function
+function exportImage(format) {
+  // Generate filename with timestamp
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+  const filename = `bubble-shift-${timestamp}`;
+  
+  // Save the current canvas
+  save(filename + '.' + format);
+}
+
+// Preset functions
+function loadPreset(presetName) {
+  const preset = presets[presetName];
+  if (!preset) return;
+  
+  // Apply all preset values
+  bgColorPicker.value = preset.backgroundColor;
+  textColorPicker.value = preset.textColor;
+  textInput.value = preset.textInput;
+  fontSizeSlider.value = preset.fontSize;
+  lineHeightSlider.value = preset.lineHeight;
+  dispSlider.value = preset.displacement;
+  numBubblesSlider.value = preset.numBubbles;
+  minBubbleSizeSlider.value = preset.minBubbleSize;
+  maxBubbleSizeSlider.value = preset.maxBubbleSize;
+  bubbleSpeedSlider.value = preset.bubbleSpeed;
+  bubbleOpacitySlider.value = preset.bubbleOpacity;
+  bubbleContrastSlider.value = preset.bubbleContrast;
+  bubbleHighlightSizeSlider.value = preset.bubbleHighlightSize;
+  bubbleHighlightStrengthSlider.value = preset.bubbleHighlightStrength;
+  fontPicker.value = preset.fontFamily;
+  
+  // Update all display values
+  updateAllDisplayValues();
+}
+
+function updateAllDisplayValues() {
+  fontSizeValue.textContent = fontSizeSlider.value;
+  lineHeightValue.textContent = lineHeightSlider.value;
+  dispSliderValue.textContent = dispSlider.value;
+  numBubblesValue.textContent = numBubblesSlider.value;
+  bubbleSpeedValue.textContent = bubbleSpeedSlider.value;
+  minBubbleSizeValue.textContent = minBubbleSizeSlider.value;
+  maxBubbleSizeValue.textContent = maxBubbleSizeSlider.value;
+  bubbleHighlightSizeValue.textContent = bubbleHighlightSizeSlider.value;
+  bubbleHighlightStrengthValue.textContent = bubbleHighlightStrengthSlider.value;
+  bubbleOpacityValue.textContent = Math.floor(bubbleOpacitySlider.value * 1000) + '%';
+  bubbleContrastValue.textContent = bubbleContrastSlider.value;
+}
 
 // Handle font upload
 fontUpload.addEventListener('change', (event) => {
@@ -122,6 +247,31 @@ function setup() {
   
   updateCanvasTransform();
   resizeCanvasContainer();
+  
+  // Remove MP4 option from p5.capture.js after it loads
+  setTimeout(removeMp4Option, 100);
+}
+
+// Function to remove MP4 option from p5.capture interface
+function removeMp4Option() {
+  // Look for p5.capture.js format selector
+  const formatSelectors = document.querySelectorAll('select');
+  formatSelectors.forEach(select => {
+    // Check if this is the p5.capture format selector
+    const mp4Option = select.querySelector('option[value="mp4"]');
+    if (mp4Option) {
+      mp4Option.remove();
+    }
+  });
+  
+  // Also try common p5.capture.js class names
+  const captureSelects = document.querySelectorAll('.p5c-formats select, #p5c-format-select');
+  captureSelects.forEach(select => {
+    const mp4Option = select.querySelector('option[value="mp4"]');
+    if (mp4Option) {
+      mp4Option.remove();
+    }
+  });
 }
 
 function draw() {
@@ -137,7 +287,11 @@ function draw() {
     textGraphics.textFont(fontPicker.value);
   }
   
-  textGraphics.text(textInput.value, width/2, height/2);
+  // Flip the text graphics to render upside down (so CSS flip shows it right-side up)
+  textGraphics.push();
+  textGraphics.scale(1, -1);
+  textGraphics.text(textInput.value, width/2, -height/2);
+  textGraphics.pop();
 
   shader(myShader);
   myShader.setUniform('tex1', textGraphics);
@@ -150,6 +304,7 @@ function draw() {
   myShader.setUniform('bubbleHighlightSize', Number(bubbleHighlightSizeSlider.max) - Number(bubbleHighlightSizeSlider.value));
   myShader.setUniform('bubbleHighlightStrength', Number(bubbleHighlightStrengthSlider.value));
   myShader.setUniform('bubbleContrast', Number(bubbleContrastSlider.value));
+  myShader.setUniform('bubbleOpacity', Number(bubbleOpacitySlider.value));
 
   push();
   translate(0, 0, -100);

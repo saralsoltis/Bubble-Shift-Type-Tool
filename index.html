@@ -15,7 +15,7 @@
         </div>
         <div class="control-group">
             <label for="text-color">Text Color:</label>
-            <input type="color" id="text-color" value="#000000">
+            <input type="color" id="text-color" value="#0797df">
         </div>
         <div class="control-group">
             <label for="text-input">Text Input:</label>
@@ -27,35 +27,40 @@ WATER</textarea>
             <div class="control-group">
                 <label for="font-picker">Font:</label>
                 <select id="font-picker">
-                    <option value="Impact">Impact</option>
-                    <option value="Helvetica">Helvetica</option>
+                    <option value="Trebuchet MS">Trebuchet MS</option>
+                    <option value="Arial">Arial</option>
                     <option value="Arial Narrow">Arial Narrow</option>
                     <option value="Arial Black">Arial Black</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Impact">Impact</option>
                     <option value="Tahoma">Tahoma</option>
-                    <option value="Courier New">Courier New</option>
+                    <option value="Geneva">Geneva</option>
                     <option value="Monaco">Monaco</option>
+                    <option value="Courier New">Courier New</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Georgia">Georgia</option>
                     <option value="Brush Script MT">Brush Script MT</option>
                     <option value="custom" id="custom-font-option" disabled>Custom Font</option>
                 </select>
             </div>
             <div class="control-group">
-                <label for="font-upload">Upload Font:</label>
+                <label for="font-upload">Upload Font: (.ttf recommended) </label><br>
                 <input type="file" id="font-upload" accept=".ttf,.otf,.woff,.woff2">
             </div>
             <div class="control-group">
                 <label for="font-size">Font Size:</label>
-                <input type="range" id="font-size" value="150" min="100" max="300" step="1">
-                <span id="font-size-value">150</span>
+                <input type="range" id="font-size" value="180" min="100" max="300" step="1">
+                <span id="font-size-value">180</span>
             </div>
             <div class="control-group">
                 <label for="line-height">Line Height:</label>
-                <input type="range" id="line-height" value="1" min="0.75" max="2" step="0.1">
-                <span id="line-height-value">1</span>
+                <input type="range" id="line-height" value="0.9" min="0.5" max="2" step="0.1">
+                <span id="line-height-value">0.9</span>
             </div>
             <div class="control-group">
                 <label for="disp-slider">Displacement Factor:</label>
-                <input type="range" id="disp-slider" value="-0.03" min="-0.3" max="0.2" step="0.01">
-                <span id="disp-slider-value">-0.03</span>
+                <input type="range" id="disp-slider" value="0.06" min="-0.3" max="0.2" step="0.01">
+                <span id="disp-slider-value">0.06</span>
             </div>
             <div class="control-group">
                 <label for="num-bubbles">Number of Bubbles:</label>
@@ -69,8 +74,8 @@ WATER</textarea>
             </div>
             <div class="control-group">
                 <label for="max-bubble-size">Max Bubble Size:</label>
-                <input type="range" id="max-bubble-size" value="1.25" min="1.0" max="2.0" step="0.01">
-                <span id="max-bubble-size-value">1.25</span>
+                <input type="range" id="max-bubble-size" value="1.5" min="1.0" max="2.0" step="0.01">
+                <span id="max-bubble-size-value">1.5</span>
             </div>
             <div class="control-group">
                 <label for="bubble-speed">Bubble Speed:</label>
@@ -78,19 +83,33 @@ WATER</textarea>
                 <span id="bubble-speed-value">2</span>
             </div>
             <div class="control-group">
+                <label for="bubble-opacity">Bubble Opacity:</label>
+                <input type="range" id="bubble-opacity" value="0.1" min="0" max="0.2" step="0.01">
+                <span id="bubble-opacity-value">100%</span>
+            </div>
+            <div class="control-group">
                 <label for="bubble-contrast">Bubble Contrast:</label>
-                <input type="range" id="bubble-contrast" value="1.0" min="0" max="2.0" step="0.1">
-                <span id="bubble-contrast-value">1.0</span>
+                <input type="range" id="bubble-contrast" value="1" min="0" max="2.0" step="0.1">
+                <span id="bubble-contrast-value">1</span>
             </div>
             <div class="control-group">
-                <label for="bubble-highlight-size">Bubble Highlight Size:</label>
-                <input type="range" id="bubble-highlight-size" value="50" min="0" max="100" step="1">
-                <span id="bubble-highlight-size-value">50</span>
+                <label for="bubble-highlight-size">Highlight Size:</label>
+                <input type="range" id="bubble-highlight-size" value="20" min="0" max="100" step="1">
+                <span id="bubble-highlight-size-value">20</span>
             </div>
             <div class="control-group">
-                <label for="bubble-highlight-strength">Bubble Highlight Strength:</label>
-                <input type="range" id="bubble-highlight-strength" value="3.5" min="0" max="10" step="0.1">
-                <span id="bubble-highlight-strength-value">3.5</span>
+                <label for="bubble-highlight-strength">Highlight Strength:</label>
+                <input type="range" id="bubble-highlight-strength" value="7" min="0" max="10" step="0.1">
+                <span id="bubble-highlight-strength-value">7</span>
+            </div>
+            <div class="control-group">
+                <label for="presets">Presets:</label>
+                <select id="presets">
+                    <option value="bubble">Bubble (default)</option>
+                    <option value="vampiric">Vampiric</option>
+                    <option value="groovy">Groovy</option>
+                    <option value="sleek">Sleek</option>
+                </select>
             </div>
     </div>
 
@@ -114,8 +133,12 @@ WATER</textarea>
             <input type="checkbox" id="flip-dimensions">
         </div>
         <div class="control-group">
-            <label for="show-controls">Show Controls:</label>
+            <label for="show-controls">Show Control Panel:</label>
             <input type="checkbox" id="show-controls" checked>
+        </div>
+        <div class="control-group">
+            <button id="export-jpg">Export JPG</button>
+            <button id="export-png">Export PNG</button>
         </div>
 
     </div>
