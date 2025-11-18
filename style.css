@@ -20,12 +20,13 @@ body {
     padding: 10px;
     border-radius: 5px;
     font-family: Arial, sans-serif;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 #control-panel {
     right: 10px;
     top: 10px;
+    width: 300px;
 }
 
 #navigation-panel {
@@ -34,7 +35,7 @@ body {
 }
 
 .control-group {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 label {

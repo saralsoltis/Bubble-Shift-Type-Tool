@@ -75,7 +75,7 @@ void main() {
   vec3 p;
   
   // Raymarch loop
-  for(int i = 0; i < 20; i++) {
+  for(int i = 0; i < 18; i++) {
       p = rayOri + rayDir * depth;
       float dist = map(p);
       depth += dist;
@@ -101,7 +101,7 @@ void main() {
   vec4 finalImg = mix(bgImg, baseImg, sphereMask);
   
   // Lighting calculations
-  vec3 lightDir = normalize(vec3(1.5, -1.5, 1.0));
+  vec3 lightDir = normalize(vec3(10.0, 10.0, 1.0));
   vec3 viewDir = vec3(0.0, 0.0, 1.0);
   
   float diffuse = max(0.0, dot(n, lightDir));

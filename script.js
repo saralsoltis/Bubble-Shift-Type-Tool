@@ -6,20 +6,20 @@ let customFont = null;
 // Preset configurations
 const presets = {
   bubble: {
-    backgroundColor: "#a6d1f2",
-    textColor: "#0797df",
+    backgroundColor: "#0064ff",
+    textColor: "#dbe9ff",
     textInput: "BE\nLIKE\nTHE\nWATER",
-    fontSize: 180,
-    lineHeight: 0.9,
+    fontSize: 120,
+    lineHeight: 1.2,
     displacement: 0.06,
     numBubbles: 8,
     minBubbleSize: 0.25,
-    maxBubbleSize: 1.5,
+    maxBubbleSize: 1.65,
     bubbleSpeed: 2.0,
-    bubbleOpacity: 0.1,
+    bubbleOpacity: 0.07,
     bubbleContrast: 1,
     bubbleHighlightSize: 20,
-    bubbleHighlightStrength: 7,
+    bubbleHighlightStrength: 10,
     fontFamily: "Trebuchet MS"
   },
   vampiric: {
@@ -27,11 +27,11 @@ const presets = {
     textColor: "#000000",
     textInput: "BLOOD\nSWEAT\nAND\nTEARS",
     fontSize: 115,
-    lineHeight: 1.4,
-    displacement: -0.2,
-    numBubbles: 10,
+    lineHeight: 1,
+    displacement: 0.03,
+    numBubbles: 6,
     minBubbleSize: 0.1,
-    maxBubbleSize: 1.0,
+    maxBubbleSize: 1,
     bubbleSpeed: 1.3,
     bubbleOpacity: 0.15,
     bubbleContrast: 0.5,
@@ -39,22 +39,39 @@ const presets = {
     bubbleHighlightStrength: 0,
     fontFamily: "Georgia"
   },
-  groovy: {
-    backgroundColor: "#c21aff",
-    textColor: "#ff822e",
-    textInput: "Go\nWith\nThe\nFlow",
-    fontSize: 245,
-    lineHeight: 1.0,
-    displacement: 0.2,
-    numBubbles: 6,
-    minBubbleSize: 0.1,
-    maxBubbleSize: 2.0,
-    bubbleSpeed: 3.0,
-    bubbleOpacity: 0.12,
-    bubbleContrast: 1.0,
+  sleek: {
+    backgroundColor: "#1a1a1a",
+    textColor: "#ffffff",
+    textInput: "GO WITH\nTHE FLOW",
+    fontSize: 50,
+    lineHeight: 1.2,
+    displacement: 0,
+    numBubbles: 12,
+    minBubbleSize: 1,
+    maxBubbleSize: 2,
+    bubbleSpeed: 3,
+    bubbleOpacity: 0.09,
+    bubbleContrast: 0.3,
     bubbleHighlightSize: 98,
-    bubbleHighlightStrength: 2.5,
-    fontFamily: "Brush Script MT"
+    bubbleHighlightStrength: 7,
+    fontFamily: "Arial Black"
+  },
+  minimal: {
+    backgroundColor: "#ffffff",
+    textColor: "#333333",
+    textInput: "GREETINGS,\nWORLD",
+    fontSize: 60,
+    lineHeight: 2,
+    displacement: 0.03,
+    numBubbles: 6,
+    minBubbleSize: 0.75,
+    maxBubbleSize: 2,
+    bubbleSpeed: 3,
+    bubbleOpacity: 0,
+    bubbleContrast: 0,
+    bubbleHighlightSize: 0,
+    bubbleHighlightStrength: 0,
+    fontFamily: "Arial Narrow"
   }
 };
 
@@ -110,7 +127,7 @@ minBubbleSizeSlider.addEventListener('input', () => minBubbleSizeValue.textConte
 maxBubbleSizeSlider.addEventListener('input', () => maxBubbleSizeValue.textContent = maxBubbleSizeSlider.value);
 bubbleHighlightSizeSlider.addEventListener('input', () => bubbleHighlightSizeValue.textContent = bubbleHighlightSizeSlider.value);
 bubbleHighlightStrengthSlider.addEventListener('input', () => bubbleHighlightStrengthValue.textContent = bubbleHighlightStrengthSlider.value);
-bubbleContrastSlider.addEventListener('input', () => bubbleContrastValue.textContent = bubbleContrastSlider.value);
+bubbleContrastSlider.addEventListener('input', () => bubbleContrastValue.textContent = Math.floor(bubbleContrastSlider.value * 100) + '%');
 bubbleOpacitySlider.addEventListener('input', () => bubbleOpacityValue.textContent = Math.floor(bubbleOpacitySlider.value * 1000) + '%');
 
 zoomLevelSlider.addEventListener('input', () => {
