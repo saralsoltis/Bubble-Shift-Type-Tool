@@ -1,33 +1,36 @@
 # Bubble Shift Type Tool
 
+![Bubble Shift Type Tool Demo](bubbleshift-example.gif)
+
 An interactive web-based typographic tool that creates liquid bubble distortion effects on text using WebGL shaders and p5.js. This tool allows you to create dynamic, water-like text effects with customizable animated bubbles that displace and refract the typography.
+
+Developed by [Sara Soltis](https://www.sarasoltis.com)
+Special thanks to [edankwan](https://www.shadertoy.com/user/edankwan) and [aferriss](https://github.com/aferriss/p5jsShaderExamples) for shader logic
 
 ## Features
 
 ### Text Customization
 - **Custom Text Input**: Enter any text with multiline support
-- **Font Selection**: Choose from built-in fonts (Impact, Helvetica, Arial variants, etc.)
-- **Custom Font Upload**: Upload your own TTF, OTF, WOFF, or WOFF2 fonts
-- **Font Size & Line Height**: Adjustable typography spacing controls
+- **Font Selection and Upload**: Choose from built-in fonts (Arial, Verdana, Impact, Times New Roman, Georgia, Trebuchet MS, etc.) or upload your own TTF/OTF fonts
+- **Font Size & Line Height**: Adjustable typography spacing controls (100-300px font size, 0.5-2.0 line height)
 - **Color Controls**: Independent background and text color pickers
 
 ### Bubble Effects
-- **Displacement Mapping**: Real-time text distortion through bubble refraction
-- **Animated Bubbles**: Floating spheres with organic movement patterns
+- **Displacement Mapping**: Real-time text distortion through bubble refraction (-0.3 to 0.2 range)
+- **Animated Bubbles**: Floating spheres with organic movement patterns using raymarching
 - **Bubble Count**: Control number of bubbles (1-12)
-- **Size Range**: Adjustable minimum and maximum bubble sizes
-- **Speed Control**: Variable animation speed for bubble movement
-- **Contrast & Highlighting**: Fine-tune bubble appearance with contrast and highlight controls
+- **Size Range**: Adjustable minimum (0.1-1.0) and maximum (1.0-2.0) bubble sizes
+- **Speed Control**: Variable animation speed for bubble movement (0.5-3.0x)
+- **Opacity Control**: Adjustable bubble transparency (0-20%)
+- **Contrast & Highlighting**: Fine-tune bubble appearance with contrast and specular highlight controls
 
 ### Canvas & Export
-- **Multiple Resolutions**: Preset canvas dimensions (1080p, 4K, Instagram formats, etc.)
+- **Multiple Resolutions**: Preset canvas dimensions (1080p, 1280x720, 1080x1080, 1080x1350, 4K, ultrawide)
 - **Orientation Toggle**: Flip between landscape and portrait modes
-- **Zoom Control**: Scale the viewport for detailed work
-- **Responsive Design**: Auto-resizing canvas container
-
-### Interface
-- **Draggable Controls**: Moveable navigation Controls
-- **Collapsible UI**: Show/hide control Controlss for clean export view
+- **Direct Export**: One-click JPG and PNG export buttons
+- **p5.capture Integration**: Advanced video/sequence exports (WebM, PNG sequence, JPG sequence, WebP sequence)
+- **Zoom Control**: Scale the viewport (25%-200%) for detailed work
+- **Preset System**: Quick-apply style presets (Bubble, Vampiric, Sleek)
 - **Real-time Preview**: All changes update immediately
 
 ## Technical Implementation
@@ -81,32 +84,27 @@ An interactive web-based typographic tool that creates liquid bubble distortion 
 ### Typography Controls
 - **Background/Text Color**: Color pickers for styling
 - **Text Input**: Multiline text area for content
-- **Font Picker**: Dropdown with system and uploaded fonts
-- **Font Upload**: File input for custom fonts
+- **Font Picker**: Dropdown with system fonts (Arial, Verdana, Impact, Times New Roman, Georgia, etc.)
+- **Font Upload**: File input for custom TTF, OTF, WOFF, WOFF2 fonts
 - **Font Size**: 100-300px range
-- **Line Height**: 0.75-2.0 spacing multiplier
+- **Line Height**: 0.5-2.0 spacing multiplier
+- **Presets**: Quick-apply style presets (Bubble, Vampiric, Sleek)
 
 ### Bubble Effects Controls
-- **Displacement Factor**: -0.3 to 0.2 (negative values create flipped distortion)
+- **Displacement Factor**: -0.3 to 0.2 (negative values create inward distortion)
 - **Number of Bubbles**: 1-12 animated spheres
 - **Bubble Size Range**: Min (0.1-1.0) and Max (1.0-2.0) size controls
 - **Bubble Speed**: 0.5-3.0 animation speed multiplier
+- **Bubble Opacity**: 0-20% transparency control
 - **Bubble Contrast**: 0-2.0 visibility enhancement
 - **Highlight Size/Strength**: Specular reflection controls (0-100 size, 0-10 strength)
 
 ### Navigation Controls
-- **Zoom**: 25%-200% viewport scaling
-- **Canvas Dimensions**: Preset resolution options
-- **Flip Orientation**: Swap width/height
-- **Show Controls**: Toggle UI visibility
-
-## Creative Applications
-
-- **Motion Graphics**: Export frames for video projects
-- **Print Design**: High-resolution typography with unique distortion effects
-- **Web Design**: Interactive headers and hero sections
-- **Experimental Typography**: Exploring liquid and refractive text treatments
-- **Social Media**: Custom branded content with animated text effects
+- **Zoom**: 10%-200% viewport scaling
+- **Canvas Dimensions**: Preset resolution options (1080p, 720p, 4K, Instagram formats, etc.)
+- **Flip Orientation**: Swap width/height for portrait/landscape
+- **Show Controls**: Toggle control panel visibility for clean export view
+- **Export Buttons**: Direct JPG and PNG export with timestamped filenames
 
 ## Browser Compatibility
 
@@ -116,11 +114,13 @@ An interactive web-based typographic tool that creates liquid bubble distortion 
 
 ## Performance Notes
 
-- Recommended browser: Google Chrome
-- Higher bubble counts and larger canvases impact frame rate
-- Recommended: 8 bubbles or fewer for smooth 60fps performance
-- 4K resolution may require powerful graphics hardware
+- **Recommended browser**: Google Chrome for best WebGL performance
+- **Optimized rendering**: Uses 16-20 raymarching steps and optimized normal calculations
+- **Bubble count impact**: Higher bubble counts affect frame rate (recommended: 8 or fewer for 60fps)
+- **Resolution scaling**: 4K resolution may require powerful graphics hardware
+- **Format compatibility**: MP4 and GIF exports disabled due to quality issues; use WebM, PNG, JPG, or WebP instead and use external convert tool for MP4 and GIF
 
 ## License
 
-Created for educational purposes as part of a Generative Tools class assignment.
+Created for educational purposes as part of a Generative Tools workshop with [Vera Van Der Seyp](https://veravandeseyp.com/)
+All rights reserved

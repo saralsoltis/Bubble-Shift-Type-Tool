@@ -17,16 +17,16 @@ const presets = {
     maxBubbleSize: 1.65,
     bubbleSpeed: 2.0,
     bubbleOpacity: 0.07,
-    bubbleContrast: 1,
-    bubbleHighlightSize: 20,
-    bubbleHighlightStrength: 10,
+    bubbleContrast: 1.2,
+    bubbleHighlightSize: 0,
+    bubbleHighlightStrength: 8,
     fontFamily: "Trebuchet MS"
   },
   vampiric: {
     backgroundColor: "#db0000",
     textColor: "#000000",
     textInput: "BLOOD\nSWEAT\nAND\nTEARS",
-    fontSize: 115,
+    fontSize: 175,
     lineHeight: 1,
     displacement: 0.03,
     numBubbles: 6,
@@ -39,21 +39,21 @@ const presets = {
     bubbleHighlightStrength: 0,
     fontFamily: "Georgia"
   },
-  sleek: {
+  slick: {
     backgroundColor: "#1a1a1a",
     textColor: "#ffffff",
     textInput: "GO WITH\nTHE FLOW",
     fontSize: 50,
-    lineHeight: 1.2,
+    lineHeight: 1,
     displacement: 0,
     numBubbles: 12,
     minBubbleSize: 1,
     maxBubbleSize: 2,
-    bubbleSpeed: 3,
-    bubbleOpacity: 0.09,
-    bubbleContrast: 0.3,
+    bubbleSpeed: 2,
+    bubbleOpacity: 0.17,
+    bubbleContrast: 0.2,
     bubbleHighlightSize: 98,
-    bubbleHighlightStrength: 7,
+    bubbleHighlightStrength: 5,
     fontFamily: "Arial Black"
   },
   minimal: {
@@ -265,29 +265,35 @@ function setup() {
   updateCanvasTransform();
   resizeCanvasContainer();
   
-  // Remove MP4 option from p5.capture.js after it loads
-  setTimeout(removeMp4Option, 100);
+  // Remove options from p5.capture.js after it loads
+  setTimeout(removeUnsupportedFormats, 100);
 }
 
-// Function to remove MP4 option from p5.capture interface
-function removeMp4Option() {
+// Function to remove unsupported formats from p5.capture interface
+function removeUnsupportedFormats() {
+  // Formats to remove due to orientation issues
+  const unsupportedFormats = ['mp4', 'gif'];
+  
   // Look for p5.capture.js format selector
   const formatSelectors = document.querySelectorAll('select');
   formatSelectors.forEach(select => {
-    // Check if this is the p5.capture format selector
-    const mp4Option = select.querySelector('option[value="mp4"]');
-    if (mp4Option) {
-      mp4Option.remove();
-    }
+    unsupportedFormats.forEach(format => {
+      const option = select.querySelector(`option[value="${format}"]`);
+      if (option) {
+        option.remove();
+      }
+    });
   });
   
   // Also try common p5.capture.js class names
   const captureSelects = document.querySelectorAll('.p5c-formats select, #p5c-format-select');
   captureSelects.forEach(select => {
-    const mp4Option = select.querySelector('option[value="mp4"]');
-    if (mp4Option) {
-      mp4Option.remove();
-    }
+    unsupportedFormats.forEach(format => {
+      const option = select.querySelector(`option[value="${format}"]`);
+      if (option) {
+        option.remove();
+      }
+    });
   });
 }
 
@@ -304,7 +310,7 @@ function draw() {
     textGraphics.textFont(fontPicker.value);
   }
   
-  // Flip the text graphics to render upside down (so CSS flip shows it right-side up)
+  // Flip the text graphics to render upside down
   textGraphics.push();
   textGraphics.scale(1, -1);
   textGraphics.text(textInput.value, width/2, -height/2);
