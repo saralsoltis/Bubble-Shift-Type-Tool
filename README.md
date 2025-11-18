@@ -4,9 +4,17 @@
 
 An interactive web-based typographic tool that creates liquid bubble distortion effects on text using WebGL shaders and p5.js. This tool allows you to create dynamic, water-like text effects with customizable animated bubbles that displace and refract the typography.
 
+<p align="center">
+  <a href="https://saralsoltis.github.io/Bubble-Shift-Type-Tool/" target="_blank">
+    <button style="background-color: #4A90E2; color: white; border: none; padding: 12px 24px; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; text-decoration: none;">
+      Open in the Browser
+    </button>
+  </a>
+</p>
+
 Developed by <a href="https://www.sarasoltis.com" target="_blank">Sara Soltis</a>.
 
-Special thanks to <a href="https://www.shadertoy.com/user/edankwan" target="_blank">edankwan</a> and <a href="https://github.com/aferriss/p5jsShaderExamples" target="_blank">aferriss</a> for shader logic
+
 
 ## Features
 
@@ -124,5 +132,7 @@ Special thanks to <a href="https://www.shadertoy.com/user/edankwan" target="_bla
 ## License
 
 Created for educational purposes as part of a Generative Tools workshop with <a href="https://veravandeseyp.com/" target="_blank">Vera Van Der Seyp</a>.
+
+Special thanks to <a href="https://www.shadertoy.com/user/edankwan" target="_blank">edankwan</a> and <a href="https://github.com/aferriss/p5jsShaderExamples" target="_blank">aferriss</a> for shader logic examples.
 
 All rights reserved
