@@ -131,7 +131,7 @@ Developed by <a href="https://www.sarasoltis.com" target="_blank">Sara Soltis</a
 
 ## License
 
-Created for educational purposes as part of a Generative Tools workshop with <a href="https://veravandeseyp.com/" target="_blank">Vera Van Der Seyp</a>.
+Created for educational purposes as part of a Generative Tools workshop with <a href="https://veravandeseyp.com/" target="_blank">Vera Van De Seyp</a>.
 
 Special thanks to <a href="https://www.shadertoy.com/user/edankwan" target="_blank">edankwan</a> and <a href="https://github.com/aferriss/p5jsShaderExamples" target="_blank">aferriss</a> for shader logic examples.
 

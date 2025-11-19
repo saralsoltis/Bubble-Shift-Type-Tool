@@ -75,7 +75,7 @@ void main() {
   vec3 p;
   
   // Raymarch loop
-  for(int i = 0; i < 22; i++) {
+  for(int i = 0; i < 20; i++) {
       p = rayOri + rayDir * depth;
       float dist = map(p);
       depth += dist;
@@ -101,12 +101,12 @@ void main() {
   vec4 finalImg = mix(bgImg, baseImg, sphereMask);
   
   // Lighting calculations
-  vec3 lightDir = normalize(vec3(1.0, 1.0, 1.0));
-  vec3 viewDir = vec3(0.0, 0.0, 1.0);
+  vec3 lightDir = normalize(vec3(0.5, 0.5, 1.0));
+  vec3 viewDir = normalize(vec3(0.25, 0.25, 1.0));
   
   float diffuse = max(0.1, dot(n, lightDir));
   float specular = pow(max(0.0, dot(n, normalize(lightDir + viewDir))), bubbleHighlightSize);
-  float edgeFactor = pow(1.0 - max(0.0, dot(n, viewDir)), 1.5);
+  float edgeFactor = pow(1.0 - max(0.0, dot(n, viewDir)), 1.0);
   
   // Material and lighting colors
   vec3 materialColor = vec3(2.0, 2.0, 2.0);
