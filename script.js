@@ -203,6 +203,12 @@ function resizeCanvasContainer() {
   
   resizeCanvas(width, height);
   textGraphics.resizeCanvas(width, height);
+  
+  // Force text graphics to redraw after resize
+  textNeedsUpdate = true;
+  
+  // Clear uniform cache to ensure shader uniforms are updated
+  uniformCache = {};
 }
 
 /**
