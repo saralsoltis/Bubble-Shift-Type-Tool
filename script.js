@@ -415,6 +415,8 @@ function windowResized() {
   const containerHeight = container.offsetHeight;
   resizeCanvas(containerWidth, containerHeight);
   textGraphics.resizeCanvas(containerWidth, containerHeight);
+  textNeedsUpdate = true; // ensure background/text are redrawn after resize
+  uniformCache = {}; // force uniforms (like resolution) to refresh
 }
 
 // ===== HELPER FUNCTIONS =====

@@ -69,3 +69,28 @@ button:hover {
 button:active {
     background-color: #004085;
 }
+
+/* Fallback message for tablet and smaller screens */
+@media (max-width: 1024px) {
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: #ffffff;
+    }
+
+    #canvas-container,
+    .menu {
+        display: none;
+    }
+
+    body::before {
+        content: "For best performance, please use your desktop browser.";
+        text-align: center;
+        font-family: Arial, sans-serif;
+        font-size: 18px;
+        color: #000;
+        padding: 0 24px;
+    }
+}
