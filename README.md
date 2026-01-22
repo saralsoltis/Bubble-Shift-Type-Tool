@@ -135,4 +135,4 @@ Created for educational purposes as part of a Generative Tools workshop with <a 
 
 Special thanks to <a href="https://www.shadertoy.com/user/edankwan" target="_blank">edankwan</a> and <a href="https://github.com/aferriss/p5jsShaderExamples" target="_blank">aferriss</a> for shader logic examples.
 
-All rights reserved
+This software is registered under the GNU General Public License v3.0.
