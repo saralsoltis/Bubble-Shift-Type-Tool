@@ -123,15 +123,16 @@ Developed by <a href="https://www.sarasoltis.com" target="_blank">Sara Soltis</a
 
 ## Performance Notes
 
-- **Recommended browser**: Google Chrome for best WebGL performance
+- **Recommended browser**: Google Chrome or Firefox for best WebGL performance
 - **Optimized rendering**: Uses 16-20 raymarching steps and optimized normal calculations
-- **Bubble count impact**: Higher bubble counts affect frame rate (recommended: 8 or fewer for 60fps)
+- **Bubble count impact**: Higher bubble counts affect frame rate (recommended: 8 bubbles or fewer for 60fps)
 - **Resolution scaling**: 4K resolution may require powerful graphics hardware
-- **Format compatibility**: MP4 and GIF exports disabled due to quality issues; use WebM, PNG, JPG, or WebP instead and use external convert tool for MP4 and GIF
+- **Troubleshooting**: If you're experiencing framerate lag, try switching browsers, turning on accelerated graphics in your browser settings, clearing cache, and closing other tabs.
+- **Format compatibility**: MP4 and GIF recording is disabled due to quality issues. Use WebM, PNG, JPG, or WebP instead and use an external convert tool for MP4 and GIF (recommended converter is ffmpeg)
 
 ## License
 
-Created for educational purposes as part of a Generative Tools workshop with <a href="https://veravandeseyp.com/" target="_blank">Vera Van De Seyp</a>.
+Created by Sara Soltis for educational purposes as part of a Generative Tools workshop with <a href="https://veravandeseyp.com/" target="_blank">Vera Van De Seyp</a>.
 
 Special thanks to <a href="https://www.shadertoy.com/user/edankwan" target="_blank">edankwan</a> and <a href="https://github.com/aferriss/p5jsShaderExamples" target="_blank">aferriss</a> for shader logic examples.
 
