@@ -26,7 +26,7 @@ body {
 #control-panel {
     right: 10px;
     top: 10px;
-    width: 310px;
+    width: 330px;
 }
 
 #navigation-panel {
@@ -40,6 +40,10 @@ body {
 
 label {
     font-weight: bold;
+}
+
+input[type="range"] {
+    transform: translateY(7px);
 }
 
 /* Hide unsupported formats from p5.capture.js interface */
